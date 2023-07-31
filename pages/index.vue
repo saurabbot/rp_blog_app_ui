@@ -21,9 +21,8 @@
 </template>
   
 <script setup >
-import { storeToRefs } from 'pinia';
-const { $generalStore } = useNuxtApp()
-const { isUserLoggedIn } = storeToRefs($generalStore)
+import jwt_decode from "jwt-decode";
+
 const router = useRouter()
 const query = gql`
    query Query {
@@ -34,12 +33,7 @@ const query = gql`
     }
   }
   `;
-// if (window.localStorage.getItem("access_token") === null) {
-const { data, execute } = !isUserLoggedIn ? useAsyncQuery(query) : {
-    data: {
-        blogs: []
-    }
-}
+const { data, error, execute } = useAsyncQuery(query)
 // }
 const isPopupVisible = ref(false);
 const showPopup = () => {
@@ -53,7 +47,15 @@ watch(isPopupVisible, () => {
 });
 onMounted(async () => {
     if (window.localStorage.getItem("access_token") === null) {
+        useGeneralStore().$state.isUserLoggedIn = false
         router.push('/login')
+    } else {
+        useGeneralStore().$state.isUserLoggedIn = true
+        const accessToken = window.localStorage.getItem("access_token")
+        const decodedToken = jwt_decode(accessToken)
+        console.log(decodedToken.sub, 'id')
+        useUserStore().$state.id = decodedToken.sub
+        execute()
     }
 })
 

@@ -1,13 +1,21 @@
 <template>
     <div class="flex justify-between shadow-md p-3 rounded-md">
-        <div class="  font-bold text-3xl text-blue-600 items-center">
+        <div class="  font-bold text-3xl text-sky-500 items-center">
             RP_Blogs
         </div>
-        <div class=" w-1/4 flex justify-between items-center font-bold text-lg text-blue-600">
+        <div class=" w-1/5 flex justify-between items-center font-bold text-lg text-sky-500">
             <!-- <span>Notifcation</span> -->
-            <NotificationDrawer />
-            <nuxt-link v-if="!isLoggedIn" to="/login">Login</nuxt-link>
-            <span v-else @click="logoutUser" class="cursor-pointer">Logout</span>
+
+            <div class="flex justify-between items-center  w-full" v-show="isLoggedIn">
+                <NotificationDrawer />
+                <span @click="logoutUser"
+                    class=" border bg-red-400 text-black border border-black p-1 rounded-lg cursor-pointer duration-200 hover:bg-sky-300 hover:text-white">Logout</span>
+            </div>
+
+            <div v-if="!isLoggedIn"
+                class="border border-sky-300 p-1 rounded-md cursor-pointer duration-200 hover:bg-sky-300 hover:text-white">
+                Login</div>
+
         </div>
     </div>
 </template>

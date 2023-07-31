@@ -44,7 +44,7 @@ const handleSubmit = async () => {
             "createBlogInput": {
                 "title": addBlogInput.value.title,
                 "content": addBlogInput.value.content,
-                "user_id": 4
+                "user_id": useUserStore().$state.id
             }
         })
         console.log(data)
@@ -54,5 +54,5 @@ const handleSubmit = async () => {
         console.error(err)
     }
 }
-    
+
 </script>

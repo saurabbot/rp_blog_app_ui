@@ -64,17 +64,19 @@ export default {
         this.socket.on('blogCreated', (blogData) => {
             // Add the new blogData to the notifications array
             // onMounted(() => {
-            useGeneralStore().showAlert = true
-            useGeneralStore().alertMessage = `${blogData.User.first_name} posted a blog`
+            if (useUserStore().$state.id !== blogData.User.id) {
+                useGeneralStore().showAlert = true
+                useGeneralStore().alertMessage = `${blogData.User.first_name} posted a blog`
+            }
+
+
 
             setTimeout(() => {
                 useGeneralStore().showAlert = false
                 useGeneralStore().alertMessage = ''
-
             }, 3000)
             // })
             this.notifications.push(blogData);
-
             // Set the realTimeNotification data property
             this.realTimeNotification = blogData;
         });
