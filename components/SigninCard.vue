@@ -33,11 +33,9 @@ export default {
             first_name: '',
             last_name: '',
         });
-        // const email = ref('');
-        // const password = ref('');
+
         const handleSignin = async () => {
             try {
-                // Call the login mutation and pass loginUserInput as variables
                 const { data } = await mutate({
                     "signinUserInput": {
                         "email": loginUserInput.value.email,
@@ -47,15 +45,10 @@ export default {
                     }
                 });
 
-                // Handle the response data
                 console.log(data)
                 window.location.replace('/login')
-
-                // Perform any necessary actions after successful login
-                // For example, you might want to redirect the user to the dashboard page
             } catch (error) {
                 console.error('Login error:', error.message);
-                // Handle the error (e.g., display an error message to the user)
             }
         };
 

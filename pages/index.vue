@@ -5,7 +5,6 @@
                 Blog</button>
 
         </div>
-        <!-- <div v-if="data.loading">Loading...</div> -->
         <p class="text-lg font-extrabold">Check out these blogs..</p>
         <ul class="grid grid-cols-4 gap-5">
             <li v-for="blog in data.blogs" :key="blog.id">
@@ -34,7 +33,6 @@ const query = gql`
   }
   `;
 const { data, error, execute } = useAsyncQuery(query)
-// }
 const isPopupVisible = ref(false);
 const showPopup = () => {
     isPopupVisible.value = true;

@@ -4,7 +4,6 @@
             RP_Blogs
         </div>
         <div class=" w-1/5 flex justify-between items-center font-bold text-lg text-sky-500">
-            <!-- <span>Notifcation</span> -->
 
             <div class="flex justify-between items-center  w-full" v-show="isLoggedIn">
                 <NotificationDrawer />
@@ -24,16 +23,16 @@ import { isLoggedIn } from "~/auth";
 
 export default {
     setup() {
-        const isLoggedInValue = ref(isLoggedIn()); // Call the isLoggedIn function to set the initial value
+        const isLoggedInValue = ref(isLoggedIn());
         const logoutUser = () => {
             if (typeof window !== "undefined") {
                 window.localStorage.removeItem("access_token");
-                window.location.reload() // Remove the access_token from localStorage
-                // isLoggedInValue.value = false; // Update the isLoggedIn state to false
+                window.location.reload()
+
             }
         };
         return {
-            isLoggedIn: computed(() => isLoggedInValue.value), // Use computed property for reactivity
+            isLoggedIn: computed(() => isLoggedInValue.value),
             logoutUser,
         };
     },

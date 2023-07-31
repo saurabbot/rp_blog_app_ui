@@ -10,6 +10,5 @@
     align-items: center;
     flex-direction: column;
     min-height: 100vh;
-    /* Ensure the container takes up at least the viewport height */
 }
 </style>
