@@ -23,7 +23,9 @@
     </div>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
+const props = defineProps(['closePopup'])
+const { closePopup } = toRefs(props)
 const addBlogMutation = gql`mutation Mutation($createBlogInput: CreateBlogInput!){
   createBlog(createBlogInput: $createBlogInput){
     id
@@ -31,38 +33,26 @@ const addBlogMutation = gql`mutation Mutation($createBlogInput: CreateBlogInput!
     content
   }
 }`
-export default {
-    props: {
-        closePopup: Function, // Declare the prop to receive the function
-    },
-    setup() {
-        const { mutate, loading, error } = useMutation(addBlogMutation)
-        const addBlogInput = ref({
-            title: '',
-            content: ''
-        })
-        const handleSubmit = async () => {
-            try {
-                const { data } = await mutate({
-                    "createBlogInput": {
-                        "title": addBlogInput.value.title,
-                        "content": addBlogInput.value.content,
-                        "user_id": 2
-                    }
-                })
-                console.log(data)
-
-            } catch (err) {
-                console.error(err)
+const { mutate, loading, error } = useMutation(addBlogMutation)
+const addBlogInput = ref({
+    title: '',
+    content: ''
+})
+const handleSubmit = async () => {
+    try {
+        const { data } = await mutate({
+            "createBlogInput": {
+                "title": addBlogInput.value.title,
+                "content": addBlogInput.value.content,
+                "user_id": 4
             }
-        };
+        })
+        console.log(data)
+        closePopup?.value()
 
-        return {
-            addBlogInput,
-            loading,
-            error,
-            handleSubmit
-        }
+    } catch (err) {
+        console.error(err)
     }
 }
+    
 </script>

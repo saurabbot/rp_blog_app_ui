@@ -4,12 +4,8 @@ export default defineNuxtConfig({
   modules: [
     "@nuxtjs/apollo",
     "@nuxtjs/tailwindcss",
-    [
-      "@pinia/nuxt",
-      {
-        autoImports: ["defineStore", "acceptHMRUpdate"],
-      },
-    ],
+    "@pinia/nuxt",
+    "@pinia-plugin-persistedstate/nuxt",
   ],
   imports: {
     dirs: ["stores"],
@@ -22,4 +18,5 @@ export default defineNuxtConfig({
       },
     },
   },
+ 
 });

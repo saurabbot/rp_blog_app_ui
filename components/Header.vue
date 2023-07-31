@@ -4,7 +4,8 @@
             RP_Blogs
         </div>
         <div class=" w-1/4 flex justify-between items-center font-bold text-lg text-blue-600">
-            <span>Notifcation</span>
+            <!-- <span>Notifcation</span> -->
+            <NotificationDrawer />
             <nuxt-link v-if="!isLoggedIn" to="/login">Login</nuxt-link>
             <span v-else @click="logoutUser" class="cursor-pointer">Logout</span>
         </div>
@@ -12,6 +13,7 @@
 </template>
 <script>
 import { isLoggedIn } from "~/auth";
+
 export default {
     setup() {
         const isLoggedInValue = ref(isLoggedIn()); // Call the isLoggedIn function to set the initial value
