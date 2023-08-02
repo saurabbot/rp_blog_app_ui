@@ -4,7 +4,7 @@
             <input v-model="loginUserInput.email" placeholder="Enter email" class="p-2 m-4" />
             <input v-model="loginUserInput.password" placeholder="Enter password" class="p-2 m-4" type="password" />
             <input v-model="loginUserInput.first_name" placeholder="Enter first name" class="p-2 m-4" />
-            <input v-model="loginUserInput.last_name" placeholder="Enter last name" class="p-2 m-4" type="password" />
+            <input v-model="loginUserInput.last_name" placeholder="Enter last name" class="p-2 m-4" />
             <button v-if="!loading" class="bg-sky-400 p-2 font-normal rounded-md" type="submit">Login</button>
             <div v-if="loading">Loading...</div>
             <div v-if="error">Error occurred while logging in.</div>

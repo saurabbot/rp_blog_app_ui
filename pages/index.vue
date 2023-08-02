@@ -5,10 +5,11 @@
                 Blog</button>
 
         </div>
+        <span class="font-bold text-4xl">Hi,{{ useUserStore().$state.first_name }}</span>
         <p class="text-lg font-extrabold">Check out these blogs..</p>
         <ul class="grid grid-cols-4 gap-5">
             <li v-for="blog in data.blogs" :key="blog.id">
-                <BlogCard :title="blog.title" :content="blog.content" />
+                <BlogCard :title="blog.title" :content="blog.content" :name="blog.User.first_name" :date="blog.created_at" />
             </li>
         </ul>
         <Notification />
@@ -23,15 +24,18 @@
 import jwt_decode from "jwt-decode";
 
 const router = useRouter()
-const query = gql`
-   query Query {
-    blogs {
+const query = gql`query Query {
+  blogs {
+    id
+    title
+    content
+    created_at
+    User{
       id
-      title
-      content
+      first_name
     }
   }
-  `;
+}`;
 const { data, error, execute } = useAsyncQuery(query)
 const isPopupVisible = ref(false);
 const showPopup = () => {
@@ -51,8 +55,9 @@ onMounted(async () => {
         useGeneralStore().$state.isUserLoggedIn = true
         const accessToken = window.localStorage.getItem("access_token")
         const decodedToken = jwt_decode(accessToken)
-        console.log(decodedToken.sub, 'id')
+        console.log(decodedToken, 'id')
         useUserStore().$state.id = decodedToken.sub
+        useUserStore().$state.first_name = decodedToken.email.split('@')[0]
         execute()
     }
 })

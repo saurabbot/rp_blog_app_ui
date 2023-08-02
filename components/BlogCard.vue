@@ -2,8 +2,8 @@
     <div
         class=" flex flex-col justify-between p-3 shadow-lg rounded-xl m-5 cursor-pointer duration-500 hover:translate-y-2 min-h-full">
         <div class="flex justify-between text-slate-500">
-            <span>By Richard</span>
-            <span>27/03/2023</span>
+            <span>By {{ name }}</span>
+            <span>{{ date.split('T')[0] }}</span>
         </div>
 
         <div class="font-bold ">{{ title }}</div>
@@ -17,6 +17,8 @@ export default {
     props: {
         title: String,
         content: String,
+        name: String,
+        date: String
     },
 };
 </script>
