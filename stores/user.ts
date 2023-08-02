@@ -5,6 +5,7 @@ export const useUserStore = defineStore("user", {
     first_name: "",
     last_name: "",
     email: "",
+    blogsData: [],
   }),
   actions: {
     resetUser() {

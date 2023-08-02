@@ -3,7 +3,7 @@
         <div class="  font-bold text-3xl text-sky-500 items-center">
             RP_Blogs
         </div>
-        <div class=" w-1/5 flex justify-between items-center font-bold text-lg text-sky-500">
+        <div class=" w-1/5 flex justify-end items-center font-bold text-lg text-sky-500">
 
             <div class="flex justify-between items-center  w-full" v-show="isLoggedIn">
                 <NotificationDrawer />
