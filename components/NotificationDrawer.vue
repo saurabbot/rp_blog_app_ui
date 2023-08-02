@@ -2,7 +2,7 @@
     <div>
         <span @click="toggleDrawer">
             <img class="h-6" src="https://img.icons8.com/?size=512&id=11642&format=png" />
-            <span class="absolute top-1 bg-yellow-300 text-xs rounded-full p-1">{{ data?.alerts?.length }}</span>
+            <span class="absolute top-1 bg-yellow-300 text-xs rounded-full p-1" v-if="data?.alerts?.length > 0">{{ data?.alerts?.length }}</span>
         </span>
         <div v-if="showDrawer"
             class="overflow-auto bg-white border border-slate-500 fixed z-50 cursor-pointer w-1/5 h-1/2 rounded-md p-2 shadow-lg">
