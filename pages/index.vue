@@ -51,6 +51,13 @@ const getBlogs = async () => {
             `,
         }),
     }).then(res => res.json()).then(data => {
+        if (data.errors) {
+            useGeneralStore().$state.isUserLoggedIn = false
+            setTimeout(() => {
+                window.localStorage.removeItem("access_token");
+                router.push('/login')
+            }, 3000)
+        }
         useUserStore().$state.blogsData = data
     })
 }

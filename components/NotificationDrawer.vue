@@ -66,6 +66,7 @@ const handleMarkedAsRead = (alertId) => {
 const showDrawer = ref(false);
 
 watch(showDrawer, () => {
+    console.log('hi')
     execute();
 });
 
