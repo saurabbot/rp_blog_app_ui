@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 export const useGeneralStore = defineStore("general", {
   state: () => ({
-    isUserLoggedIn: true,
+    isUserLoggedIn: false,
     showAlert: false,
     alertMessage: "",
   }),
